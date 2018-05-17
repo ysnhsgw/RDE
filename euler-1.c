@@ -10,11 +10,19 @@ main()
 	int times = 20;
 	printf("%lf  %lf\n", t, u);
 
+	FILE *f;
+	errno_t b;
+
 	for (t = dt; t <= times; t = t + dt)
 	{ 
+		b = fopen_s(&f, "euler-1.csv","a");
+		fprintf(f, "%f,%f\n", t, u);
+		fclose(f);
+
 		du = a * u*(1 - u)*dt;
 		u = u + du;
-		printf("%lf  %lf\n", t, u);
+		printf("%lf %lf\n", t, u);
+		
 	}
 }
 
